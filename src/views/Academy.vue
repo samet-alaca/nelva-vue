@@ -1,11 +1,11 @@
 <template lang="html">
-
+	<p>This is Academy</p>
 </template>
 
 <script>
 export default {
-	name: 'NavGuest'
-};
+	name: 'Academy'
+}
 </script>
 
 <style lang="css">

@@ -1,11 +1,11 @@
 <template lang="html">
-
+	<p>This is Admin</p>
 </template>
 
 <script>
 export default {
-	name: 'NavGuest'
-};
+	name: 'Admin'
+}
 </script>
 
 <style lang="css">
