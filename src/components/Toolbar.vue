@@ -19,20 +19,17 @@
 </template>
 
 <script>
-import NavAuth from '@/components/NavAuth.vue';
-
 export default {
     name: 'Toolbar',
     components: {
-        NavAuth
+
     }
 };
 </script>
 
 <style lang="css">
 nav.toolbar {
-    background-image: url('../assets/img/design/patterns/gray.png');
-    background-repeat: repeat;
+	background-color: #F5F1EA !important;
 }
 
 div.toolbar-title {
@@ -56,20 +53,22 @@ img.toolbar-logo {
 
 .toolbar-items > a {
     padding: 0 10px;
-    font-family: 'Charlemagne';
-    font-size: 17px;
+    font-family: 'BuiltTitling';
+    text-transform: uppercase;
+    font-size: 30px;
     text-decoration: none;
     text-transform: uppercase;
     color: #565656;
-    background: url('../assets/img/design/patterns/gray.png') repeat;
+    background-color: #F5F1EA;
     transition: 250ms;
 }
 
-.toolbar-items > a:hover {
-    background: url('../assets/img/design/patterns/blue.png') repeat;
+.toolbar-items > a:hover:not(.router-link-active) {
+    color: #9B9EA2;
 }
 
 .toolbar-items > .router-link-active {
-    background: url('../assets/img/design/patterns/gold.png') repeat;
+    background-color: #9B9EA2;
+    color: #F5F1EA;
 }
 </style>

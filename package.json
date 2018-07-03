@@ -1,6 +1,6 @@
 {
-    "name": "nelva_vue",
-    "version": "0.1.0",
+    "name": "nelva-vue",
+    "version": "0.3.4",
     "private": true,
     "scripts": {
         "serve": "vue-cli-service serve",
