@@ -1,20 +1,25 @@
 <template lang="html">
-	<v-footer dark height="auto">
-		<v-card flat tile class="indigo lighten-1 white--text text-xs-center">
+	<v-footer height="auto">
+		<v-card flat tile class="text-xs-center fill patterned">
 			<v-card-text>
-				<v-btn v-for="icon in icons" :key="icon" class="mx-3 white--text" icon>
-					<v-icon size="24px">{{ icon }}</v-icon>
-				</v-btn>
-			</v-card-text>
-
-			<v-card-text class="white--text pt-0">
-				Phasellus feugiat arcu sapien, et iaculis ipsum elementum sit amet. Mauris cursus commodo interdum. Praesent ut risus eget metus luctus accumsan id ultrices nunc. Sed at orci sed massa consectetur dignissim a sit amet dui. Duis commodo vitae velit et faucibus. Morbi vehicula lacinia malesuada. Nulla placerat augue vel ipsum ultrices, cursus iaculis dui sollicitudin. Vestibulum eu ipsum vel diam elementum tempor vel ut orci. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
+				<a class="footer-icon" href="https://discord.gg/8Enn2bh" target="_blank">
+					<img src="@/assets/img/design/discord.png">
+				</a>
+				<a class="footer-icon" href="https://www.supremacy1914.fr/index.php?id=188&L=11" target="_blank">
+					<img src="@/assets/img/design/supremacy.png">
+				</a>
+				<a class="footer-icon" href="https://www.supremacy1914.fr/index.php?id=188&L=11" target="_blank">
+					<img src="@/assets/img/design/conflictofnations.png">
+				</a>
+				<a class="footer-icon" href="https://www.supremacy1914.fr/index.php?id=188&L=11" target="_blank">
+					<img src="@/assets/img/design/callofwar.png">
+				</a>
 			</v-card-text>
 
 			<v-divider></v-divider>
 
-			<v-card-text class="white--text">
-				&copy;{{ new Date().getFullYear() }} — <strong>Vuetify</strong>
+			<v-card-text>
+				&copy; {{ new Date().getFullYear() }} — <strong>Nelva</strong> by <a href="https://samet-alaca.fr" target="_blank">Samet Alaca</a>
 			</v-card-text>
 		</v-card>
 	</v-footer>
@@ -22,19 +27,26 @@
 
 <script>
 export default {
-	name: 'Footer',
-	data: () => ({
-		icons: [
-			'fab fa-facebook',
-			'fab fa-twitter',
-			'fab fa-google-plus',
-			'fab fa-linkedin',
-			'fab fa-instagram'
-		]
-	})
+	name: 'Footer'
 }
 </script>
 
-<style lang="css">
+<style lang="css" scoped>
+.fill {
+	width: 100%;
+}
 
+.footer-icon, .footer-icon > * {
+	width: 48px;
+	height: 48px;
+	transition: 250ms
+}
+
+.footer-icon:not(:last-child) {
+	margin-right: 15px;
+}
+
+.footer-icon:hover > * {
+	transform: rotate(-30deg);
+}
 </style>

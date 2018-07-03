@@ -79,6 +79,8 @@ ul {
 
 .icon-discord {
 	background: url('../assets/img/discord.svg');
+	background-repeat: no-repeat;
+	background-position: center;
 	height: 55px;
 	width: 55px;
 	vertical-align: middle;

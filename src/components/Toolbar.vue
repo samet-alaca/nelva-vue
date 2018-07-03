@@ -1,5 +1,5 @@
 <template lang="html">
-    <v-toolbar>
+    <v-toolbar flat>
         <v-toolbar-title class="toolbar-title">
             <router-link :to="{ name: 'home' }">
                 <img class="toolbar-logo" src="@/assets/img/logo.png"/>
@@ -15,6 +15,9 @@
             <router-link :to="{ name: 'admin' }">Admin</router-link>
         </v-toolbar-items>
         <v-spacer></v-spacer>
+        <v-toolbar-items class="toolbar-items hidden-sm-and-down">
+            <a href="https://discordapp.com/oauth2/authorize?scope=identify%20guilds&state=93e09fc42e27bbc33fdfe918aeffc9b6&response_type=code&approval_prompt=auto&redirect_uri=http%3A%2F%2Flocalhost:8080%2Flogin&client_id=282165070706900992">Connexion</a>
+        </v-toolbar-items>
     </v-toolbar>
 </template>
 
@@ -29,7 +32,7 @@ export default {
 
 <style lang="css">
 nav.toolbar {
-	background-color: #F5F1EA !important;
+	background-color: #f7f1e3 !important;
 }
 
 div.toolbar-title {
@@ -59,16 +62,16 @@ img.toolbar-logo {
     text-decoration: none;
     text-transform: uppercase;
     color: #565656;
-    background-color: #F5F1EA;
+    background-color: #f7f1e3;
     transition: 250ms;
 }
 
 .toolbar-items > a:hover:not(.router-link-active) {
-    color: #9B9EA2;
+    color: #4a69bd;
 }
 
 .toolbar-items > .router-link-active {
-    background-color: #9B9EA2;
-    color: #F5F1EA;
+    background-color: #4a69bd;
+    color: #f7f1e3;
 }
 </style>

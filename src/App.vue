@@ -37,9 +37,9 @@ export default {
 }
 
 .application--wrap {
-    background-image: url('assets/img/background.jpeg');
     background-attachment: fixed;
     background-size: cover;
+    background-color: #4a69bd
 }
 
 * {
@@ -79,12 +79,16 @@ button.btn.btn-primary {
 .card-title {
 	justify-content: center;
 	padding: 15px;
-	background-color: #F5F1EA;
+	background-color: #f7f1e3;
 	color: #2C2F33;
 }
 
 .card-title > * {
 	font-family: 'BuiltTitling';
 	font-size: 30px !important;
+}
+
+.card.patterned {
+	background-color: #f7f1e3;
 }
 </style>

@@ -57,7 +57,7 @@ export default {
 
 <style lang="css">
 .card.patterned {
-	background-color: #F5F1EA;
+	background-color: #f7f1e3;
 }
 
 .unified-card {
