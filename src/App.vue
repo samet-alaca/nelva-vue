@@ -57,6 +57,12 @@ hr {
     background-position: center;
 }
 
+.h1 {
+    font-family: 'BuiltTitling';
+    font-size: 48px;
+    margin: 0;
+}
+
 @media (min-width: 1900px) {
     .container {
         max-width: 1500px;

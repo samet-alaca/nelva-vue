@@ -7,7 +7,7 @@
         </v-toolbar-title>
         <v-toolbar-items class="toolbar-items hidden-sm-and-down">
             <router-link :to="{ name: 'join' }">Nous rejoindre</router-link>
-            <router-link :to="{ name: 'members' }">Membres</router-link>
+            <router-link :to="{ name: 'users' }">Membres</router-link>
             <router-link :to="{ name: 'academy' }">Académie</router-link>
             <router-link :to="{ name: 'nexus' }">Nexus</router-link>
             <router-link :to="{ name: 'cinelva' }">Cinelva</router-link>

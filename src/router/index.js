@@ -1,5 +1,7 @@
 import Vue from 'vue';
 import Router from 'vue-router';
+import { DISCORD_CHECK } from '@/store/actions';
+import store from '@/store'
 
 Vue.use(Router);
 
@@ -17,9 +19,24 @@ export default new Router({
 			component: () => import('@/views/Join')
 		},
 		{
-			name: 'members',
-			path: '/members',
-			component: () => import('@/views/Members')
+			name: 'users',
+			path: '/users',
+			component: () => import('@/views/Users'),
+			beforeEnter: (to, from, next) => {
+				store.dispatch(DISCORD_CHECK).then(next).catch((error) => {
+					throw error;
+				});
+			}
+		},
+		{
+			name: 'user',
+			path: '/users/:id',
+			component: () => import('@/views/User'),
+			beforeEnter: (to, from, next) => {
+				store.dispatch(DISCORD_CHECK).then(next).catch((error) => {
+					throw error;
+				});
+			}
 		},
 		{
 			name: 'academy',

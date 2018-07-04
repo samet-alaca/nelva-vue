@@ -8,10 +8,10 @@
 				<a class="footer-icon" href="https://www.supremacy1914.fr/index.php?id=188&L=11" target="_blank">
 					<img src="@/assets/img/design/supremacy.png">
 				</a>
-				<a class="footer-icon" href="https://www.supremacy1914.fr/index.php?id=188&L=11" target="_blank">
+				<a class="footer-icon" href="https://www.conflictnations.com/" target="_blank">
 					<img src="@/assets/img/design/conflictofnations.png">
 				</a>
-				<a class="footer-icon" href="https://www.supremacy1914.fr/index.php?id=188&L=11" target="_blank">
+				<a class="footer-icon" href="https://fr.callofwar.com/index.php?id=304&L=11" target="_blank">
 					<img src="@/assets/img/design/callofwar.png">
 				</a>
 			</v-card-text>
@@ -38,7 +38,8 @@ export default {
 
 .footer-icon, .footer-icon > * {
 	width: 48px;
-	height: 48px;
+	height: auto;
+	vertical-align: middle;
 	transition: 250ms
 }
 

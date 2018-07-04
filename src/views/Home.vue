@@ -42,8 +42,25 @@
 					</v-card-text>
 				</v-card>
 			</v-flex>
-			<v-flex>
+			<v-flex md12>
 				<hr>
+			</v-flex>
+			<v-flex md12>
+				<h1 class="h1">Les jeux que nous jouons principalement</h1>
+				<a class="main-game" href="https://www.supremacy1914.fr/index.php?id=188&L=11" target="_blank">
+					<img src="@/assets/img/design/supremacy.png">
+				</a>
+				<a class="main-game" href="https://www.conflictnations.com/" target="_blank">
+					<img src="@/assets/img/design/conflictofnations.png">
+				</a>
+				<a class="main-game" href="https://fr.callofwar.com/index.php?id=304&L=11" target="_blank">
+					<img src="@/assets/img/design/callofwar.png">
+				</a>
+			</v-flex>
+			<v-flex>
+				<v-card class="patterned">
+					<v-card-text>Nous sommes originaires de Supremacy 1914, mais nous apprécions tous les jeux de Bytro Games, et nous sommes intéressés par les joueurs de tous ces jeux. Au delà de ces jeux, nous sommes des grands fans de tous les jeux paradox interactive (Hearts of Irons, Stellaris, Europa Universalis, Crusader Kings 2), mais également Mount&Blade Warband, ou, pour d'autres, War Thunder/World of Ships/World of Tanks. Ce sont des occupations communautaires plus que des jeux où nous tryhardons.</v-card-text>
+				</v-card>
 			</v-flex>
 		</v-layout>
 	</v-container>
@@ -51,15 +68,13 @@
 
 <script>
 export default {
-	name: 'Home'
+	name: 'Home',
+	mounted() {
+	}
 }
 </script>
 
 <style lang="css">
-.card.patterned {
-	background-color: #f7f1e3;
-}
-
 .unified-card {
 	height: 100% !important;
 }
@@ -69,6 +84,20 @@ export default {
 	font-size: 15px;
 }
 
+.main-game > * {
+	width: 90px;
+	vertical-align: middle;
+}
 
+.main-game {
+	padding: 15px;
+}
 
+.logo {
+	transition: 250ms;
+}
+
+.logo:hover {
+	filter: drop-shadow(4px 4px 5px black);
+}
 </style>
