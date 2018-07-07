@@ -6,8 +6,28 @@
 </template>
 
 <script>
+import api from '@/api';
+
 export default {
-	name: 'Member'
+	name: 'Member',
+    data() {
+        return {
+            user: null,
+            error: {
+                state: false,
+                message: ''
+            },
+        }
+    },
+    created() {
+        api.getDiscordUser(this.$store.state.token, this.$route.params.id).then(response => {
+            this.user = response.data;
+            console.log(this.user);
+        }).catch(error => {
+            this.error.state = true;
+            this.error.message = error.message;
+        });
+    },
 }
 </script>
 

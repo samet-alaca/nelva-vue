@@ -4,12 +4,12 @@ import Vuetify from 'vuetify';
 import App from '@/App';
 import router from '@/router';
 import store from '@/store'
-import { DISCORD_INIT } from '@/store/actions';
+import { AUTHENTICATE } from '@/store/actions.type';
 
 Vue.config.productionTip = false;
 Vue.use(Vuetify);
 
-store.dispatch(DISCORD_INIT);
+store.dispatch(AUTHENTICATE);
 
 new Vue({
     router,

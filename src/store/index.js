@@ -1,36 +1,31 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
-import { DISCORD_READY, DISCORD_INIT, DISCORD_CHECK } from '@/store/actions.js';
-import Discord from 'discord.js';
+import api from '@/api';
+import * as actions from '@/store/actions.type';
+import * as mutations from '@/store/mutations.type';
 import config from '@/../config';
 
 Vue.use(Vuex);
 
 export default new Vuex.Store({
 	state: {
-		discord: null
+        token: null
 	},
 	actions: {
-		[DISCORD_READY]({ commit }, discord) {
-			commit(DISCORD_READY, discord);
+		[actions.AUTHENTICATE]({ commit }) {
+            return new Promise((resolve, reject) => {
+                api.authenticate().then(response => {
+                    commit(mutations.SET_TOKEN, response.data.token);
+                    resolve();
+                }).catch(error => {
+                    reject(error);
+                });
+            });
 		},
-		[DISCORD_INIT]({ commit }) {
+		[actions.CHECK_AUTH]({ state }) {
 			return new Promise((resolve, reject) => {
-				const discord = new Discord.Client();
-				discord.login(config.discord.token);
-				discord.on('ready', () => {
-					commit(DISCORD_READY, discord);
-					resolve();
-				});
-				discord.on('error', () => {
-					reject();
-				});
-			});
-		},
-		[DISCORD_CHECK]({ state }) {
-			return new Promise((resolve, reject) => {
-				if(!state.discord) {
-					this.dispatch(DISCORD_INIT).then(resolve).catch(reject);
+				if(!state.token) {
+					this.dispatch(actions.AUTHENTICATE).then(resolve).catch(reject);
 				} else {
 					resolve();
 				}
@@ -38,8 +33,8 @@ export default new Vuex.Store({
 		}
 	},
 	mutations: {
-		[DISCORD_READY](state, discord) {
-			state.discord = discord;
-		}
+		[mutations.SET_TOKEN](state, token) {
+            state.token = token;
+        }
 	}
 });

@@ -22,11 +22,6 @@ export default {
 
 <style lang="css">
 @font-face {
-    font-family: 'Charlemagne';
-    src: url('assets/fonts/Charlemagne.otf');
-}
-
-@font-face {
     font-family: 'BuiltTitling';
     src: url('assets/fonts/BuiltTitling.ttf');
 }
@@ -44,7 +39,6 @@ export default {
 
 * {
     font-family: 'Roboto';
-    color: #2C2F33;
 }
 
 hr {

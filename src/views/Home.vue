@@ -68,10 +68,8 @@
 
 <script>
 export default {
-	name: 'Home',
-	mounted() {
-	}
-}
+	name: 'Home'
+};
 </script>
 
 <style lang="css">

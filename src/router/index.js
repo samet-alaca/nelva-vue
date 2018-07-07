@@ -1,6 +1,6 @@
 import Vue from 'vue';
 import Router from 'vue-router';
-import { DISCORD_CHECK } from '@/store/actions';
+import { CHECK_AUTH } from '@/store/actions.type';
 import store from '@/store'
 
 Vue.use(Router);
@@ -23,7 +23,7 @@ export default new Router({
 			path: '/users',
 			component: () => import('@/views/Users'),
 			beforeEnter: (to, from, next) => {
-				store.dispatch(DISCORD_CHECK).then(next).catch((error) => {
+				store.dispatch(CHECK_AUTH).then(next).catch((error) => {
 					throw error;
 				});
 			}
@@ -33,7 +33,7 @@ export default new Router({
 			path: '/users/:id',
 			component: () => import('@/views/User'),
 			beforeEnter: (to, from, next) => {
-				store.dispatch(DISCORD_CHECK).then(next).catch((error) => {
+				store.dispatch(CHECK_AUTH).then(next).catch((error) => {
 					throw error;
 				});
 			}
