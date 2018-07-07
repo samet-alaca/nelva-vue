@@ -64,11 +64,11 @@ hr {
     }
 }
 .flex {
-	text-align: center;
+    text-align: center;
 }
 
 .img {
-	width: 60%;
+    width: 60%;
 }
 
 button.btn.btn-primary {
@@ -77,18 +77,18 @@ button.btn.btn-primary {
 }
 
 .card-title {
-	justify-content: center;
-	padding: 15px;
-	background-color: #f7f1e3;
-	color: #2C2F33;
+    justify-content: center;
+    padding: 15px;
+    background-color: #f7f1e3;
+    color: #2C2F33;
 }
 
 .card-title > * {
-	font-family: 'BuiltTitling';
-	font-size: 30px !important;
+    font-family: 'BuiltTitling';
+    font-size: 30px !important;
 }
 
 .card.patterned {
-	background-color: #f7f1e3;
+    background-color: #f7f1e3;
 }
 </style>

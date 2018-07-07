@@ -32,7 +32,7 @@ export default {
 
 <style lang="css">
 nav.toolbar {
-	background-color: #f7f1e3 !important;
+    background-color: #f7f1e3 !important;
 }
 
 div.toolbar-title {

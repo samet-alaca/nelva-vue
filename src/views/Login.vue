@@ -1,13 +1,13 @@
 <template lang="html">
-	<div></div>
+    <div></div>
 </template>
 
 <script>
 export default {
-	name: 'Login',
-	mounted() {
-		
-	}
+    name: 'Login',
+    mounted() {
+
+    }
 }
 </script>
 
