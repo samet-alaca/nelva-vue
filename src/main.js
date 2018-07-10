@@ -8,7 +8,6 @@ import { AUTHENTICATE } from '@/store/actions.type';
 
 Vue.config.productionTip = false;
 Vue.use(Vuetify);
-
 store.dispatch(AUTHENTICATE);
 
 new Vue({

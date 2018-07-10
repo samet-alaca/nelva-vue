@@ -3,7 +3,6 @@ import Vuex from 'vuex';
 import api from '@/api';
 import * as actions from '@/store/actions.type';
 import * as mutations from '@/store/mutations.type';
-import config from '@/../config';
 
 Vue.use(Vuex);
 
