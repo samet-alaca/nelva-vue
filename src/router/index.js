@@ -23,9 +23,7 @@ export default new Router({
             path: '/users',
             component: () => import('@/views/Users'),
             beforeEnter: (to, from, next) => {
-                store.dispatch(CHECK_AUTH).then(next).catch((error) => {
-                    throw error;
-                });
+                store.dispatch(CHECK_AUTH).finally(next);
             }
         },
         {
@@ -33,9 +31,7 @@ export default new Router({
             path: '/users/:id',
             component: () => import('@/views/User'),
             beforeEnter: (to, from, next) => {
-                store.dispatch(CHECK_AUTH).then(next).catch((error) => {
-                    throw error;
-                });
+                store.dispatch(CHECK_AUTH).finally(next);
             }
         },
         {

@@ -85,6 +85,9 @@ export default {
     methods: {
         init() {
             this.context = this.$refs.canvas.getContext('2d');
+            this.image.crossOrigin = '';
+            this.image.src = 'https://i.imgur.com/nuOmhE5.jpg';
+            this.image.onload = this.draw;
 
             this.$refs.input.onchange = (event) => {
                 let file = event.target.files[0];

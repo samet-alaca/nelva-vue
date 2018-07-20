@@ -42,8 +42,8 @@
                         </div>
                         <div class="control status">
                             <span>
-                                <div ref="statusCircle" class="circle"></div>
-                                <span ref="status"></span>
+                                <div ref="statusCircle" class="circle replay"></div>
+                                <span ref="status">Replay du 08/07/2018 à 20h14 - 23 spectateurs</span>
                             </span>
                         </div>
                         <div class="control right">
@@ -62,7 +62,7 @@
             </div>
             <div class="p-container z1">
                 <div class="video">
-                    <video ref="video"></video>
+                    <video ref="video" src="@/assets/test.mp4"></video>
                 </div>
             </div>
         </div>
@@ -84,9 +84,6 @@ export default {
     mounted() {
         const isFirefox = typeof InstallTrigger !== 'undefined';
         const isChrome = !!window.chrome && !!window.chrome.webstore;
-        this.initializePositionControl();
-        this.initializeMouseFade();
-
         if(isChrome) {
             this.initializeVolumeControl();
         } else {
@@ -94,24 +91,16 @@ export default {
                 alert('This browser is not supported, try again with Chrome or Firefox');
             }
         }
+        this.initializePositionControl();
+        this.initializeMouseFade();
+        this.initializeAlternativeCommands();
 
-        document.addEventListener('keypress', (event) => {
-            if(event.keyCode === 32) {
-                this.changePlay();
-            } else if(event.keyCode === 102) {
-                this.changeFullscreen();
-            }
-        });
         const script = document.createElement('script');
         script.type = 'text/javascript';
         script.src = 'https://cdn.jsdelivr.net/npm/hls.js@latest';
 
-        script.onload = () => {
-            this.initializeVideoFeed();
-        };
-        script.onreadystatechange = () => {
-            this.initializeVideoFeed();
-        };
+        script.onload = this.initializeVideoFeed;
+        script.onreadystatechange = this.initializeVideoFeed;
         document.getElementsByTagName('head')[0].appendChild(script);
     },
     methods: {
@@ -171,6 +160,7 @@ export default {
         },
 
         initializeVideoFeed() {
+            /*
             if(Hls.isSupported()) {
                 const hls = new Hls();
                 hls.loadSource('https://nelva.fr/stream/source.m3u8');
@@ -184,6 +174,16 @@ export default {
                     this.$refs.video.play();
                 });
             }
+            */
+        },
+
+        initializeAlternativeCommands() {
+            document.addEventListener('keypress', event => {
+                switch(event.code) {
+                    case 'KeyF': this.changeFullscreen(); break;
+                    case 'Space': this.changePlay(); break;
+                }
+            });
         },
 
         changeVolume() {
@@ -205,7 +205,7 @@ export default {
                 this.$refs.animation.setAttribute('to', !playing ? this.play : this.pause);
                 this.$refs.animation.beginElement();
             }
-            
+
             if(playing) {
                 this.$refs.video.pause();
             } else {
@@ -380,6 +380,7 @@ export default {
     width: 10px;
     height: 10px;
     border-radius: 100%;
+    margin-right: 5px;
     display: inline-block;
 }
 

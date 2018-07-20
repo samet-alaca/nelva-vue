@@ -1,7 +1,7 @@
 import axios from 'axios';
 import config from '@/../config.json';
 
-const url = 'http://localhost:3001';
+const url = 'http://localhost:7000';
 
 export default {
     authenticate() {
