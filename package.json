@@ -1,6 +1,6 @@
 {
     "name": "nelva-vue",
-    "version": "0.4.1",
+    "version": "0.7.6",
     "private": true,
     "scripts": {
         "serve": "vue-cli-service serve",
@@ -9,8 +9,11 @@
     },
     "dependencies": {
         "axios": "^0.18.0",
+        "chart.js": "^2.7.2",
+        "socket.io-client": "^2.1.1",
         "vue": "^2.5.16",
         "vue-router": "^3.0.1",
+        "vue-session": "^1.0.0",
         "vuetify": "^1.0.19",
         "vuex": "^3.0.1"
     },

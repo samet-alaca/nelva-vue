@@ -65,6 +65,7 @@ import api from '@/api';
 
 export default {
     name: 'Members',
+    cache: false,
     data() {
         return {
             users: {
@@ -79,9 +80,9 @@ export default {
             defaultAvatars: config.discord.avatars
         }
     },
-    created() {
+    mounted() {
         api.getDiscordUsers(this.$store.state.token).then(response => {
-            this.users = response.data;
+            this.users = JSON.parse(response.data);
         }).catch(error => {
             this.error.state = true;
             this.error.message = error.message;

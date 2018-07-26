@@ -16,7 +16,8 @@
         </v-toolbar-items>
         <v-spacer></v-spacer>
         <v-toolbar-items class="toolbar-items hidden-sm-and-down">
-            <a href="https://discordapp.com/oauth2/authorize?scope=identify%20guilds&state=93e09fc42e27bbc33fdfe918aeffc9b6&response_type=code&approval_prompt=auto&redirect_uri=http%3A%2F%2Flocalhost:8080%2Flogin&client_id=282165070706900992">Connexion</a>
+            <a v-if='!this.user' href="https://discordapp.com/api/oauth2/authorize?client_id=464085305453182986&redirect_uri=http%3A%2F%2Flocalhost%3A8080%2Flogin&response_type=code&scope=identify%20guilds">Connexion</a>
+            <router-link :to="{ name: 'user', params: { id: this.user.id }}" v-else>{{ this.user.username }}</router-link>
         </v-toolbar-items>
     </v-toolbar>
 </template>
@@ -24,8 +25,11 @@
 <script>
 export default {
     name: 'Toolbar',
-    components: {
-
+    data() {
+        return {
+            logged: this.$session.get('discordToken'),
+            user: this.$session.get('discordUser')
+        }
     }
 };
 </script>

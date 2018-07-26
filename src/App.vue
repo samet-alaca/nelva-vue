@@ -16,6 +16,9 @@ export default {
     components: {
         Toolbar,
         Footer
+    },
+    created() {
+        this.$session.start();
     }
 };
 </script>

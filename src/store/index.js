@@ -8,7 +8,9 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
     state: {
-        token: null
+        token: null,
+        discordToken: null,
+        refreshToken: null
     },
     actions: {
         [actions.AUTHENTICATE]({ commit }) {

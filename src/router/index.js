@@ -42,12 +42,26 @@ export default new Router({
         {
             name: 'nexus',
             path: '/nexus',
-            component: () => import('@/views/Nexus')
+            component: () => import('@/views/Nexus'),
+            beforeEnter: (to, from, next) => {
+                store.dispatch(CHECK_AUTH).finally(next);
+            }
+        },
+        {
+            name: 'document',
+            path: '/nexus/:slug',
+            component: () => import('@/views/Document'),
+            beforeEnter: (to, from, next) => {
+                store.dispatch(CHECK_AUTH).finally(next);
+            }
         },
         {
             name: 'cinelva',
             path: '/cinelva',
-            component: () => import('@/views/Cinelva')
+            component: () => import('@/views/Cinelva'),
+            beforeEnter: (to, from, next) => {
+                store.dispatch(CHECK_AUTH).finally(next);
+            }
         },
         {
             name: 'chronicles',

@@ -49,9 +49,7 @@
                         <div class="control right">
                             <button class="control-button fullscreen" @click="changeFullscreen"><v-icon ref="fullscreenIcon">fullscreen</v-icon></button>
                         </div>
-                        <div class="control right">
-                            <button class="control-button quality"><v-icon>settings</v-icon></button>
-                        </div>
+                        <!--<div class="control right"><button class="control-button quality"><v-icon>settings</v-icon></button></div>-->
                     </div>
                 </div>
             </div>
@@ -78,7 +76,8 @@ export default {
             currentTime: 0,
             duration: 0,
             pause: 'M11,10 L18,13.74 18,22.28 11,26 M18,13.74 L26,18 26,18 18,22.28',
-            play: 'M11,10 L17,10 17,26 11,26 M20,10 L26,10 26,26 20,26'
+            play: 'M11,10 L17,10 17,26 11,26 M20,10 L26,10 26,26 20,26',
+            oldWidth: '82%'
         };
     },
     mounted() {
@@ -118,13 +117,15 @@ export default {
 
         initializePositionControl() {
             this.$refs.video.addEventListener('timeupdate', () => {
-                this.currentTime = Math.round(this.$refs.video.currentTime * 1000);
-                this.duration = Math.round(this.$refs.video.duration * 1000);
-                this.$refs.currentTimeDisplay.innerHTML = this.prettify(Math.round(this.currentTime / 1000));
-                this.$refs.durationDisplay.innerHTML = this.prettify(Math.round(this.$refs.video.duration)) + ' &nbsp;&nbsp;- ';
-                if(navigator.userAgent.toLowerCase().indexOf('chrome') > -1) {
-                    const value = Math.round((this.currentTime / this.duration) * 10000) / 10000;
-                    this.$refs.timeline.style.backgroundImage = '-webkit-gradient(linear, left top, right top, color-stop(' + value + ', #FFF), color-stop(' + value + ', #333))';
+                if(this.$refs.video) {
+                    this.currentTime = Math.round(this.$refs.video.currentTime * 1000);
+                    this.duration = Math.round(this.$refs.video.duration * 1000);
+                    this.$refs.currentTimeDisplay.innerHTML = this.prettify(Math.round(this.currentTime / 1000));
+                    this.$refs.durationDisplay.innerHTML = this.prettify(Math.round(this.$refs.video.duration)) + ' &nbsp;&nbsp;- ';
+                    if(navigator.userAgent.toLowerCase().indexOf('chrome') > -1) {
+                        const value = Math.round((this.currentTime / this.duration) * 10000) / 10000;
+                        this.$refs.timeline.style.backgroundImage = '-webkit-gradient(linear, left top, right top, color-stop(' + value + ', #FFF), color-stop(' + value + ', #333))';
+                    }
                 }
             });
             this.changePlay();
@@ -153,8 +154,10 @@ export default {
                 this.$refs.controls.style.cursor = 'default';
                 window.clearTimeout(hide);
                 hide = window.setTimeout(() => {
-                    this.$refs.controls.style.opacity = 0;
-                    this.$refs.controls.style.cursor = 'none';
+                    if(this.$refs.controls) {
+                        this.$refs.controls.style.opacity = 0;
+                        this.$refs.controls.style.cursor = 'none';
+                    }
                 }, 2000);
             });
         },
@@ -174,15 +177,21 @@ export default {
                     this.$refs.video.play();
                 });
             }
-            */
+        */
         },
 
         initializeAlternativeCommands() {
-            document.addEventListener('keypress', event => {
+            this.$refs.player.addEventListener('keypress', event => {
                 switch(event.code) {
                     case 'KeyF': this.changeFullscreen(); break;
                     case 'Space': this.changePlay(); break;
                 }
+            });
+            this.$refs.player.addEventListener('dblclick', () => {
+                this.changeFullscreen();
+            });
+            this.$refs.player.addEventListener('click', () => {
+                this.changePlay();
             });
         },
 
@@ -199,7 +208,7 @@ export default {
 
         changePlay() {
             const isFirefox = typeof InstallTrigger !== 'undefined';
-            const playing = !!(this.$refs.video.currentTime > 0 && !this.$refs.video.paused && !this.$refs.video.ended && this.$refs.video.readyState > 2);
+            const playing = !!(this.$refs.video.currentTime && this.$refs.video.currentTime > 0 && !this.$refs.video.paused && !this.$refs.video.ended && this.$refs.video.readyState > 2);
             if(!isFirefox) {
                 this.$refs.animation.setAttribute('from', !playing ? this.pause : this.play);
                 this.$refs.animation.setAttribute('to', !playing ? this.play : this.pause);
@@ -214,15 +223,20 @@ export default {
         },
 
         openFullscreen() {
-            this.$refs.sizer.style.width = '100vw';
-            const requestMethod = this.$refs.player.requestFullScreen || this.$refs.player.webkitRequestFullScreen || this.$refs.player.mozRequestFullScreen || this.$refs.player.msRequestFullScreen;
-            if(requestMethod) {
-                requestMethod.call(this.$refs.player);
+            if(this.$refs.sizer) {
+                this.$refs.sizer.style.width = '100vw';
+                this.oldWidth = this.$refs.player.style.width;
+                this.$refs.player.style.width = '100vw';
+                const requestMethod = this.$refs.player.requestFullScreen || this.$refs.player.webkitRequestFullScreen || this.$refs.player.mozRequestFullScreen || this.$refs.player.msRequestFullScreen;
+                if(requestMethod) {
+                    requestMethod.call(this.$refs.player);
+                }
             }
         },
 
         exitFullscreen() {
             this.$refs.sizer.style.width = '100%';
+            this.$refs.player.style.width = this.oldWidth;
             if(document.exitFullscreen) {
                 document.exitFullscreen();
             } else if(document.msExitFullscreen) {
