@@ -20,7 +20,26 @@
                             </v-avatar>
                             <div class="document-details">
                                 <h2>{{ this.doc.title }}</h2>
+                                <h4 v-html="getCategory(doc.category)"></h4>
                                 <h3>par <router-link :to="{ name: 'user', params: { id: this.author.user.id } }">{{ this.author.user.username }}</router-link> - <v-icon>schedule</v-icon> {{ this.created }}</h3>
+                            </div>
+                            <div class="document-actions">
+
+                                <!--
+                                    <v-btn color="info" icon><v-icon>edit</v-icon></v-btn>
+                                -->
+                                <v-dialog v-model="dialog" persistent max-width="400">
+                                    <v-btn slot="activator" color="error" icon><v-icon>delete</v-icon></v-btn>
+                                    <v-card>
+                                        <v-card-title class="headline">Êtes-vous sûr de vouloir supprimer ce document ?</v-card-title>
+                                        <v-card-text>Cette action est irréversible, le document sera perdu à tout jamais dans les ténèbres...</v-card-text>
+                                        <v-card-actions>
+                                            <v-spacer></v-spacer>
+                                            <v-btn color="red darken-1" flat @click.native="dialog = false">Oups, annulez ça</v-btn>
+                                            <v-btn color="blue darken-1" flat @click="deleteDocument">BRÛLE HERETIQUE</v-btn>
+                                        </v-card-actions>
+                                    </v-card>
+                                </v-dialog>
                             </div>
                         </div>
                         <hr class="classic-hr">
@@ -51,6 +70,7 @@ export default {
                 state: false,
                 message: ''
             },
+            dialog: false,
         }
     },
     mounted() {
@@ -65,10 +85,17 @@ export default {
             this.error.state = true;
             this.error.message = error.message;
         });
+        api.getCategories(this.$store.state.token).then(response => {
+            this.categories = response.data;
+        });
     },
     methods: {
         avatar(user) {
             return user.avatar ? 'https://cdn.discordapp.com/avatars/' + user.id + '/' + user.avatar : this.defaultAvatars[Math.floor(Math.random() * 3)];
+        },
+
+        getCategory(id) {
+            return this.categories.filter(el => el.id == id)[0].title;
         },
 
         format(d) {
@@ -87,6 +114,14 @@ export default {
                 (minutes > 9 ? '' : '0') + minutes
             ].join('h');
             return date + ' à ' + time;
+        },
+
+        deleteDocument() {
+            this.dialog = false;
+            api.removeDocument(this.$store.state.token, this.$route.params.slug).then(() => {
+                api.removeCourse(this.$store.state.token, this.$route.params.slug);
+                window.location.href = window.location.origin + '/nexus';
+            });
         }
     }
 }
@@ -126,6 +161,20 @@ export default {
     display: inline-block;
     vertical-align: middle;
     margin-left: 20px;
+}
+.document-details > h2 { margin-right: 10px; }
+.document-details > h4 {
+    background-color: #3498DB;
+    color: white;
+    padding: 5px;
+    border-radius: 15px;
+}
+.document-details > h4, .document-details > h2 {
+    display: inline-block;
+}
+
+.document-actions {
+    float: right;
 }
 
 .document-content {

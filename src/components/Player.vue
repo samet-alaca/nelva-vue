@@ -190,9 +190,6 @@ export default {
             this.$refs.player.addEventListener('dblclick', () => {
                 this.changeFullscreen();
             });
-            this.$refs.player.addEventListener('click', () => {
-                this.changePlay();
-            });
         },
 
         changeVolume() {

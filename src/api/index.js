@@ -123,7 +123,11 @@ export default {
     },
 
     removeDocument(token, slug) {
-        return axios.delete(url + '/nexus/' + slug, { token: token });
+        return axios({
+            method: 'DELETE',
+            data: { token: token },
+            url: url + '/nexus/' + slug
+        });
     },
 
     getCategories(token) {
@@ -139,6 +143,22 @@ export default {
             method: 'DELETE',
             data: { token: token },
             url: url + '/categories/' + id
+        });
+    },
+
+    getCourses(token) {
+        return axios.post(url + '/courses', { token: token });
+    },
+
+    insertCourse(token, course) {
+        return axios.put(url + '/courses/' + course.slug, Object.assign({ token: token }, course));
+    },
+
+    removeCourse(token, slug) {
+        return axios({
+            method: 'DELETE',
+            data: { token: token },
+            url: url + '/courses/' + slug
         });
     }
 };
