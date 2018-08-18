@@ -3,7 +3,10 @@
         <v-layout row wrap>
             <v-layout row wrap v-if="!error.state">
                 <v-flex xs12>
-                    <img src="@/assets/img/design/titles/nexus.png"/>
+                    <div class="logo-wrap">
+                        <img class="nexus-img" src="@/assets/img/design/titles/nexus.png"/>
+                        <img class="nexus-hover" src="@/assets/img/design/titles/nexus-hover.png"/>
+                    </div>
                     <v-flex xs12>
                         <v-card class="patterned">
                             <v-card-text>Bienvenue dans la base de données de documents du Royaume de Nelva</v-card-text>
@@ -12,7 +15,7 @@
                     </v-flex>
                 </v-flex>
                 <v-flex xs12>
-                    <v-layout align-center row wrap>
+                    <v-layout align-center row wrap v-if="this.$session.get('discordUser')">
                         <v-flex xs2 offset-xs4>
                             <v-btn ref="document" :disabled="this.creatingDocument" color="info" @click="createDocument"><v-icon>add</v-icon> Nouveau document</v-btn>
                         </v-flex>
@@ -55,7 +58,7 @@
                     <div v-else class="grid">
                         <div class="document" v-for="doc in this.documents" :key="doc.slug" @click="openDocument(doc.slug)">
                             <div class="doc-img">
-                                <img :src="doc.image" />
+                                <img :src="doc.image || require('@/assets/img/default.png')" />
                             </div>
                             <div class="doc-title">
                                 <h2>{{ doc.title }}</h2>
@@ -361,5 +364,24 @@ export default {
 
 .padded {
     padding: 20px;
+}
+.logo-wrap {
+    position: relative;
+}
+.nexus-hover {
+    position: absolute;
+    left: 400px;
+    transition: 250ms;
+    z-index: -1;
+    opacity: 0;
+}
+.nexus-img {
+    transition: 250ms;
+}
+.nexus-img:hover {
+    opacity: 0;
+}
+.nexus-img:hover ~ .nexus-hover {
+    opacity: 1;
 }
 </style>

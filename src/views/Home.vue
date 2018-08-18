@@ -93,6 +93,8 @@ export default {
 
 .logo {
     transition: 250ms;
+    max-width: 60%;
+    z-index: 2;
 }
 
 .logo:hover {

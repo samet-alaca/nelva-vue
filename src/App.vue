@@ -1,5 +1,8 @@
 <template lang="html">
     <v-app>
+        <div class="background">
+            <img src="@/assets/img/faondbleu.jpg">
+        </div>
         <Toolbar></Toolbar>
         <router-view></router-view>
         <Footer></Footer>
@@ -35,9 +38,22 @@ export default {
 }
 
 .application--wrap {
+    z-index: 1;
+    /*
     background-attachment: fixed;
     background-size: cover;
+    background-image: url('assets/img/faondbleu.jpg');
     background-color: #4a69bd
+    */
+}
+
+.background, .background > img {
+    z-index: -1;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    filter: brightness(80%);
 }
 
 * {

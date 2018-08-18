@@ -40,6 +40,26 @@ export default new Router({
             component: () => import('@/views/Academy')
         },
         {
+            name: 'military',
+            path: '/academy/military',
+            component: () => import('@/views/Military')
+        },
+        {
+            name: 'economy',
+            path: '/academy/economy',
+            component: () => import('@/views/Economy')
+        },
+        {
+            name: 'diplomacy',
+            path: '/academy/diplomacy',
+            component: () => import('@/views/Diplomacy')
+        },
+        {
+            name: 'leadership',
+            path: '/academy/leadership',
+            component: () => import('@/views/Leadership')
+        },
+        {
             name: 'nexus',
             path: '/nexus',
             component: () => import('@/views/Nexus'),
